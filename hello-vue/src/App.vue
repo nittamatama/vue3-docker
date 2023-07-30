@@ -1,21 +1,24 @@
 <script setup lang="ts">
-  import { ref } from "vue";
+  import { reactive, computed } from "vue";
 
-  const now = new Date();
-  const nowStr = now.toLocaleTimeString();
-  let timeStr = nowStr;
-  const timeStrRef = ref(nowStr);
+  const data = reactive({
+    PI: 3.14,
+    radius: Math.round(Math.random() * 10)
+  });
+  const area = computed(
+    (): number => {
+      return data.radius * data.radius * data.PI;
+    }
+  );
 
-  function changeTime(): void {
-    const newTime = new Date();
-    const newTimeStr = newTime.toLocaleTimeString();
-    timeStr = newTimeStr;
-    timeStrRef.value = newTimeStr;
-  }
-  setInterval(changeTime, 1000);
+  setInterval(
+    ():void => {
+      data.radius = Math.round(Math.random() * 10);
+    },
+    1000
+  );
 </script>
 
 <template>
-  <p>現在時刻: {{ timeStr }}</p>
-  <p>現在時刻(ref): {{ timeStrRef }}</p>
+  <p>半径{{ data.radius }}の円の面積を円周率{{ data.PI }}で計算すると{{ area }}</p>
 </template>
