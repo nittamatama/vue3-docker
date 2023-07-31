@@ -1,24 +1,11 @@
 <script setup lang="ts">
-  import { reactive, computed } from "vue";
+  import { ref } from "vue";
 
-  const data = reactive({
-    PI: 3.14,
-    radius: Math.round(Math.random() * 10)
-  });
-  const area = computed(
-    (): number => {
-      return data.radius * data.radius * data.PI;
-    }
-  );
-
-  setInterval(
-    ():void => {
-      data.radius = Math.round(Math.random() * 10);
-    },
-    1000
-  );
+  const url = ref("https://vuejs.org/");
 </script>
 
 <template>
-  <p>半径{{ data.radius }}の円の面積を円周率{{ data.PI }}で計算すると{{ area }}</p>
+  <p><a v-bind:href="url" target="_blank">Vue.jsサイト</a></p>
+  <p><a :href="url" target="_blank">Vue.jsサイト省略形</a></p>
+  <p><a v-bind:href="url + 'guide/introduction.html'" target="_blank">Vue.jsガイド</a></p>
 </template>
