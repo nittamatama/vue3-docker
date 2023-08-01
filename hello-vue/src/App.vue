@@ -1,11 +1,16 @@
 <script setup lang="ts">
   import { ref } from "vue";
 
-  const url = ref("https://vuejs.org/");
+  const imgAttributes = ref({
+    src: "/images/logo.svg",
+    alt: "Vueのロゴ",
+    width: 75,
+    height: 75
+  });
 </script>
 
 <template>
-  <p><a v-bind:href="url" target="_blank">Vue.jsサイト</a></p>
-  <p><a :href="url" target="_blank">Vue.jsサイト省略形</a></p>
-  <p><a v-bind:href="url + 'guide/introduction.html'" target="_blank">Vue.jsガイド</a></p>
+  <p><img v-bind="imgAttributes"></p>
+  <p><img v-bind="imgAttributes" title="ろごです"></p>
+  <p><img v-bind="imgAttributes" alt="ろごです"></p>
 </template>
