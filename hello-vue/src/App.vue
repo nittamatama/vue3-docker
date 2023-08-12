@@ -1,23 +1,14 @@
 <script setup lang="ts">
   import { ref } from "vue";
 
-  const msg = ref("まだです");
-  const onEnterKey = (): void => {
-    msg.value = "エンター気ーのうか";
-  };
-  const onRightButtonClick = (): void => {
-    msg.value = "ボタンが右クリックされました";
-  };
-  const onShiftClick = (): void => {
-    msg.value = "shiftキーを押しながらクリックされた";
-  };
+  const inputNameModel = ref("双方向");
 </script>
 
 <template>
-  <p>{{ msg }}</p>
-  <input type="text" v-on:keydown.enter="onEnterKey"><br>
-  <button v-on:click.right="onRightButtonClick">右クリック</button><br>
-  <button v-on:click.shift="onShiftClick">shiftおしながら</button><br>
+  <section>
+    <input type="text" v-model="inputNameModel">
+    <p>{{ inputNameModel }}</p>
+  </section>
 </template>
 
 <style>
